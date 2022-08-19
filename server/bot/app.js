@@ -6,6 +6,7 @@
 const { Client, GatewayIntentBits } = require("discord.js");
 require("dotenv").config({ path: require("find-config")(".env") } );
 const token = process.env.BOT_TOKEN;
+const db = process.env.DATABASE_NAME;
 const config = require("./config.json");
 
 const url = "mongodb://localhost:27017/maddosh-counter";
@@ -17,12 +18,12 @@ myMongoClient = new MongoClient(url);
 async function init_db() {
 	try {
 		await myMongoClient.connect();
-		console.log("Initialising...");
+		/* console.log("Initialising...");
 		let dbo = myMongoClient.db("maddosh-counter");
 		const aggCursor = dbo.collection("messages").aggregate([{ $out: "messages-test" }]); // assumes that messages-test is already a db!!! don't be stupid like i was
 		for await (const doc of aggCursor) {
 			console.log(doc);
-		}
+		} */
 	} finally {
 		console.log("Initialised")
 	  	await myMongoClient.close();
@@ -34,7 +35,7 @@ async function get_latest_num() {
 	try {
 		console.log("Getting latest_num...");
 		await myMongoClient.connect();
-		const collection = myMongoClient.db("maddosh-counter").collection("messages-test");
+		const collection = myMongoClient.db("maddosh-counter").collection(db);
 		latest = await collection.find().sort({_id:-1}).limit(1).toArray();
 	} finally {
 		console.log("Got latest_num");
@@ -48,7 +49,7 @@ async function add_num(message) {
 		const num = message.content;
 		console.log(`Adding ${num} to db...`);
 		await myMongoClient.connect();
-		const collection = await myMongoClient.db("maddosh-counter").collection("messages-test");
+		const collection = await myMongoClient.db("maddosh-counter").collection(db);
 		const attachments = reactions = [];
 		await message.attachments.each((s, a, c) => { attachments.push(a.url) });
 		await message.reactions.cache.each((s, mr, r) => { reactions.push(`${mr.name} (${mr.count})`) });

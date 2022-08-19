@@ -15,7 +15,7 @@ fix_num <- function(data, x) {
 # This is why the code may look weird
 
 data["Date"] <- lapply(data["Date"], function(x) { # Convert datetimes to unix
-  as.numeric(ymd_hm(x))
+  as.numeric(dmy_hm(x))
 })
 
 data <- data[-(1:165), ]
@@ -28,7 +28,7 @@ data <- fix_num(data, c(213:227, 246:254))
 new_rows <- data.frame(
   AuthorID=rep(c("458304698827669504"), times=10),
   Author=rep(c("invisi.#0561"), times=10),
-  Date=rep(c("1837275180"), times=10),
+  Date=rep(c("1616955180"), times=10),
   Content=256:265,
   Attachments=rep(c(""), times=10),
   Reactions=rep(c(""), times=10)
@@ -41,14 +41,14 @@ data <- data[-285, ]
 data <- fix_num(data, c(319:322, 352:364, 400))
 data <- data[-(402:409), ]
 data <- data[-421, ]
-data <- fix_num(data, c(506:512))
+data <- fix_num(data, c(491:495, 506:512))
 data <- data[-c(513:514), ]
 data <- fix_num(data, c(519:520, 588:600, 651:655))
 
 missing_row <- data.frame(
   AuthorID="302364139488149504",
   Author="MISCOUNT",
-  Date="1366581960",
+  Date="1618351560",
   Content=656,
   Attachments="",
   Reactions=""
@@ -66,7 +66,7 @@ data <- data[-964, ]
 missing_row <- data.frame(
   AuthorID="689918460679028736",
   Author="MISCOUNT",
-  Date="1492772160",
+  Date="1618656960",
   Content=977,
   Attachments="",
   Reactions=""
@@ -76,7 +76,7 @@ data <- rbind(data[1:976, ], missing_row, data[977:length(data$Date), ]) # Aisha
 data <- data[-(1001:1005), ]
 data <- data[-1002, ]
 data <- fix_num(data, 1012:2678)
-data <- data[-(2678:2679), ] # Amalee and Aisha
+data <- data[-(2678:2679), ] # Amalee and https://www.fullblackscreen.com/Aisha
 data <- data[-2728, ] # Josh
 data <- data[-3454, ] # Mansa
 data <- data[-4519, ] # Harrison
@@ -86,7 +86,7 @@ data <- data[-(5285:5286), ] # Harrison and Noah
 missing_rows <- data.frame(
   AuthorID=rep(c("485020107559403520"), times=2),
   Author=rep(c("MISCOUNT"), times=2),
-  Date=rep(c("1377200340"), times=2),
+  Date=rep(c("1660411440"), times=2),
   Content=7565:7566,
   Attachments=rep(c(""), times=2),
   Reactions=rep(c(""), times=2)
