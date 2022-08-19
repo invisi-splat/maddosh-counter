@@ -9,7 +9,7 @@ const token = process.env.BOT_TOKEN;
 const db = process.env.DATABASE_NAME;
 const config = require("./config.json");
 
-const url = "mongodb://localhost:27017/maddosh-counter";
+const url = "mongodb+srv://jerome:XlgIfPhy2XwtQWPL@cluster0.yorlhnw.mongodb.net/test";
 const { MongoClient } = require("mongodb");
 myMongoClient = new MongoClient(url);
 

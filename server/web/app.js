@@ -10,7 +10,7 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 
-const url = "mongodb://localhost:27017/maddosh-counter";
+const url = "mongodb+srv://jerome:XlgIfPhy2XwtQWPL@cluster0.yorlhnw.mongodb.net/test";
 const { MongoClient } = require("mongodb");
 myMongoClient = new MongoClient(url);
 const db = process.env.DATABASE_NAME;

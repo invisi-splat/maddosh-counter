@@ -1,7 +1,7 @@
 library(readr)
 library(lubridate)
 
-data <- read_csv("count-to-8000.csv")
+data <- read_csv("count-to-8000.csv", col_types = cols(.default = col_character()))
 
 # Functions
 
@@ -26,7 +26,7 @@ data <- data[-213, ]
 data <- fix_num(data, c(213:227, 246:254))
 
 new_rows <- data.frame(
-  AuthorID=rep(c("458304698827669504"), times=10),
+  AuthorID=rep(c("458304698827669536"), times=10),
   Author=rep(c("invisi.#0561"), times=10),
   Date=rep(c("1616955180"), times=10),
   Content=256:265,
@@ -64,7 +64,7 @@ data <- fix_num(data, 951:960)
 data <- data[-964, ]
 
 missing_row <- data.frame(
-  AuthorID="689918460679028736",
+  AuthorID="689918460679028769",
   Author="MISCOUNT",
   Date="1618656960",
   Content=977,
@@ -84,7 +84,7 @@ data <- data[-(5001:5003), ] # Pinned message
 data <- data[-(5285:5286), ] # Harrison and Noah
 
 missing_rows <- data.frame(
-  AuthorID=rep(c("485020107559403520"), times=2),
+  AuthorID=rep(c("485020107559403522"), times=2),
   Author=rep(c("MISCOUNT"), times=2),
   Date=rep(c("1660411440"), times=2),
   Content=7565:7566,
