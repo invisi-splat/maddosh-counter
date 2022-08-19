@@ -3,6 +3,7 @@ body {
   margin: 0;
   overflow-y: hidden;
   font-family: Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 2.5vh;
 }
 
 #top {
@@ -24,13 +25,14 @@ body {
   flex: 3;
 }
 
-.pie-chart {
-  width: 5vw;
+.pie-chart p {
+  font-size: 90%;
 }
 
-.pie-chart canvas {
-  height: 250px !important;
-  width: 250px !important;
+.pie-chart div {
+  width: 25vh;
+  margin: 0;
+  text-align: center;
 }
 
 .history-wrapper {
@@ -46,7 +48,7 @@ body {
   margin-bottom: 2vh
 }
 
-#bottom * {
+#bottom div {
   flex: 1;
   margin: 1vw;
   text-align: center;
@@ -54,4 +56,68 @@ body {
 
 .recent-activity-wrapper {
   width: 10vw;
+}
+
+#current-count h1 {
+  font-size: 600%;
+  text-shadow: 3px 3px grey;
+}
+
+#avg-day-wrapper {
+  flex: 3;
+  display: flex;
+}
+
+#last-count div span {
+  margin: 0 2vw;
+  font-size: 150%;
+}
+
+#last-count div span:last-child {
+  font-weight: bold;
+}
+
+#last-count p:last-child {
+  font-style: italic;
+}
+
+
+
+
+#loading-wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#loading-data {
+  font-size: 200%;
+  margin: 10vh 0;
+}
+
+/* ty https://codepen.io/thetallweeks/pen/yybGra */
+
+#loading-data:after {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: bottom;
+  -webkit-animation: ellipsis steps(4, end) 900ms infinite;      
+  animation: ellipsis steps(4, end) 900ms infinite;
+  content: "\2026";
+  width: 0px;
+}
+
+@keyframes ellipsis {
+  to {
+    width: 1.25em;    
+  }
+}
+
+@-webkit-keyframes ellipsis {
+  to {
+    width: 1.25em;    
+  }
 }

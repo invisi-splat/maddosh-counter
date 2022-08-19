@@ -1,5 +1,5 @@
 import React from "react";
-import { Chart as ChartJS, registerables } from 'chart.js'; // haha me lazy
+import { Chart as ChartJS, registerables, defaults } from 'chart.js'; // haha me lazy
 import 'chartjs-adapter-date-fns';
 import zoomPlugin from 'chartjs-plugin-zoom';
 import { Line } from 'react-chartjs-2';
@@ -29,8 +29,8 @@ function History(props) {
     const data = {
         datasets: history.map(obj => {
             const color = randomColor({
-                hue: 'random',
-                luminosity: 'random',
+                hue: "random",
+                luminosity: "light",
                 format: "rgb"
             })
             return {
@@ -42,6 +42,8 @@ function History(props) {
                     }
                 }),
                 showLine: false,
+                borderColor: color,
+                backgroundColor: color,
                 pointBorderColor: color,
                 pointBackgroundColor: color,
                 pointRadius: 8,
@@ -82,7 +84,9 @@ function History(props) {
         }
     }
 
-    return <div class="history-wrapper"><Line data={data} options={options}></Line></div>;
+    defaults.font.family = "Tahoma, Geneva, Verdana, sans-serif";
+
+    return <div className="history-wrapper animate__animated animate__bounceIn animate__delay-2s"><Line data={data} options={options}></Line></div>;
 }
 
 export default History;

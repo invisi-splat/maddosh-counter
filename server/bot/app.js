@@ -56,7 +56,7 @@ async function add_num(message) {
 		const entry = {			
 			AuthorID: message.author.id,
 			Author: message.author.tag,
-			Date: message.createdTimestamp,
+			Date: Math.ceil(message.createdTimestamp / 1000),
 			Content: num,
 			Attachments: attachments,
 			Reactions: reactions
@@ -103,6 +103,9 @@ init_db()
 				return false;
 			}
 			await add_num(message);
+			if (process.send) {
+				process.send("db-update");
+			}
 			[ latest_num, latest_author ] = await get_latest_num(); // sanity check
 			return true;
 		});

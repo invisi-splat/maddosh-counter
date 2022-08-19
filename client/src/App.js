@@ -8,12 +8,16 @@ import History from "./components/History";
 import RecentActivity from "./components/RecentActivity";
 import AvgDay from "./components/AvgDay";
 import LastCount from "./components/LastCount";
+import io from "socket.io-client";
+import "animate.css";
+
+const socket = io();
 
 function App() {
   const [ data, setData ] = useState(null);
   const [ loading, setLoading ] = useState(true)
 
-  useEffect(() => {
+  const fetch_data = () => {
     fetch("/api")
       .then(res => {
         if (res.ok) {
@@ -30,9 +34,18 @@ function App() {
       .finally(() => {
         setLoading(false)
       })
-  }, [])
+  }
 
-  if (loading) { return "Loading..." }
+  useEffect(fetch_data, [])
+
+  useEffect(() => { socket.on("refresh", fetch_data); }, [])
+
+  if (loading) {return (
+    <div id="loading-wrapper">
+      <div id="loading-data">Loading data</div>
+      <div id="wont-be-a-minute">Won't be a minute! (I hope)</div>
+    </div>
+  )}
   else {
     return (
       <>
@@ -43,7 +56,7 @@ function App() {
       </div>
       <History className="history-comp" data={data}></History>
       <div id="bottom">
-        <RecentActivity className="recent-activity-comp" data={data}></RecentActivity>
+        <RecentActivity data={data}></RecentActivity>
         <AvgDay className="avg-day-comp" data={data}></AvgDay>
         <LastCount className="last-day-comp" data={data}></LastCount>
       </div>

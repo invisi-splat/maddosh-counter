@@ -44,7 +44,7 @@ function PieChart(props) {
         }
     };
 
-    return <div className="pie-chart"><Pie data={data} options={options}></Pie></div>;
+    return <div className="pie-chart animate__animated animate__bounceIn animate__delay-1s"><p>Count distribution</p><div><Pie data={data} options={options}></Pie></div></div>;
 }
 
 export default PieChart;

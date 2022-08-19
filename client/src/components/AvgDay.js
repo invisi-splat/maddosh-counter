@@ -23,13 +23,13 @@ function AvgDay(props) {
     const timeToNextMilestone = Math.ceil((nextMilestone - maxNum) / movingAvg);
 
     return (
-      <div id="avg-day-wrapper">
+      <div id="avg-day-wrapper" className="history-wrapper animate__animated animate__fadeInUp animate__delay-3s">
         <div id="milestone">
             <p><b>~{timeToNextMilestone}</b> days until we reach</p>
             <p><b>{nextMilestone}</b></p>
         </div>
         <div id="avg-day">
-            <p>Average count per day (7 day moving average):</p>
+            <p>7 day moving average:</p>
             <p><b>{movingAvg}</b></p>
         </div>
       </div>

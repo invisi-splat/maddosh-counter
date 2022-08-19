@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
 dayjs.extend(duration);
 
 function CountingLength(props) {
-    const startTime = parseInt(props.data[0]["Date"], 10) * 1000; // ms
+    let startTime = props.data[0]["Date"]
+    startTime = startTime.length < 12 ? parseInt(startTime, 10) * 1000 : parseInt(startTime, 10)
     const [ time, setTime ] = useState(dayjs.duration(Date.now() - startTime));
 
     let p = Array(6).fill("s");
@@ -16,10 +17,15 @@ function CountingLength(props) {
     if (time.seconds() === 1) p[5] = "";
 
     const formatted_time = time.format(`Y [year${p[0]}], M [month${p[1]}], D [day${p[2]}], H [hour${p[3]}], m [minute${p[4]}], [and] s [second${p[5]}]`);
-    setInterval(() => { setTime(dayjs.duration(Date.now() - startTime)) }, 1000);
+    useEffect(() => {
+      const timer = setInterval(() => { setTime(dayjs.duration(Date.now() - startTime)) }, 1000);
+      return () => {
+        clearTimeout(timer);
+      }
+    }, [startTime])
 
     return (
-      <div id="counting-length">
+      <div id="counting-length" className="animate__animated animate__bounceIn animate__delay-1s">
         <p>We have been counting for</p>
         <p><b>{formatted_time}</b></p>
       </div>

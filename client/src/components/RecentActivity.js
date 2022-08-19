@@ -23,7 +23,6 @@ function aggregate_data(data) {
 
 function RecentActivity(props) {
     const recent_activity = aggregate_data(props.data);
-    console.log(recent_activity)
     const data = {
         labels: recent_activity.map(x => x[0]),
         datasets: [{
@@ -37,7 +36,7 @@ function RecentActivity(props) {
         }]
     }
 
-    return <div className="recent-activity-wrapper"><Bar data={data}></Bar></div>;
+    return <div className="recent-activity-wrapper history-wrapper animate__animated animate__fadeInUp animate__delay-3s"><Bar data={data}></Bar></div>;
 }
 
 export default RecentActivity;

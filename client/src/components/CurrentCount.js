@@ -1,8 +1,8 @@
 function CurrentCount(props) {
     return (
       <div id="current-count">
-        <p>We are currently at</p>
-        <h1>{props.data.at(-1)["Content"]}</h1>
+        <p className="animate__animated animate__fadeIn">We are currently at</p>
+        <h1 className="animate__animated animate__fadeInUp">{props.data.at(-1)["Content"]}</h1>
       </div>
     )
 }
